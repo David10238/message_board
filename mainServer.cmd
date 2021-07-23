@@ -1,2 +1,1 @@
-cd server
-npm run start
+cd server & npm run start

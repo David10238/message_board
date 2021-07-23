@@ -1,2 +1,1 @@
-cd auth-server
-cargo run
+cd auth-server & set ROCKET_PORT=5001 & cargo run
