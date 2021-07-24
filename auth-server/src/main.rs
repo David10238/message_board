@@ -3,8 +3,6 @@ mod controller;
 #[macro_use]
 extern crate rocket;
 
-pub fn a() {}
-
 #[launch]
 fn rocket() -> _ {
     rocket::build().mount(
