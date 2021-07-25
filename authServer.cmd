@@ -1,1 +1,0 @@
-cd auth-server-actix & cargo run

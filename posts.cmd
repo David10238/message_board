@@ -1,0 +1,1 @@
+cd posts-express & npm run start
