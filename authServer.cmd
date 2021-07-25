@@ -1,1 +1,1 @@
-cd auth-server & set ROCKET_PORT=5001 & cargo run
+cd auth-server-actix & cargo run
