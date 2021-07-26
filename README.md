@@ -7,7 +7,7 @@ A microservice based social media site. For fun and to learn different approache
 - **auth-gin:** GoLang and Gin microservice for handling authintication security
 - **posts-express:** Typescript and Express microservice for storing posts
 - **profile-django:** Python and Django microservice for storing user settings and profile information
-- **api-rocket:** Rust and Rocket api server for front ends to interact with, does not need a database
+- **api-actix:** Rust and Actix api server for front ends to interact with, does not need a database
 
 ## **Languages Used**
 
@@ -25,7 +25,7 @@ A microservice based social media site. For fun and to learn different approache
 
 [Gin](https://github.com/gin-gonic/gin)
 
-[Rocket](https://rocket.rs/)
+[Actix](https://actix.rs/)
 
 [DJango](https://www.djangoproject.com/)
 
