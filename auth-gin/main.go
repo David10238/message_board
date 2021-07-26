@@ -7,9 +7,9 @@ import (
 )
 
 func main() {
-	fmt.Println("Luanching auth microservice")
-
+	const PORT = ":5001"
+	fmt.Printf("Luanching auth microservice on port %s\n", PORT)
 	server := gin.Default()
 	Routes(server)
-	server.Run(":5001")
+	server.Run(PORT)
 }
