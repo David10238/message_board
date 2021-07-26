@@ -1,0 +1,1 @@
+cd auth-gin & go run main.go
