@@ -10,5 +10,6 @@ func main() {
 	fmt.Println("Luanching auth microservice")
 
 	server := gin.Default()
+	Routes(server)
 	server.Run(":5001")
 }

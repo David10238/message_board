@@ -1,1 +1,1 @@
-cd auth-gin & go run main.go
+cd auth-gin & go run github.com/david10238/message_board/auth-gin
