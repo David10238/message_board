@@ -1,0 +1,1 @@
+cd spa-react & npm run start
