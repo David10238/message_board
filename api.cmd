@@ -1,0 +1,1 @@
+cd api-actix & cargo run
