@@ -1,6 +1,9 @@
 package main
 
 import (
+	"fmt"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,26 +18,86 @@ func Routes(server *gin.Engine) {
 	server.GET("/byToken", byToken)
 }
 
-func changePassword(ctx *gin.Context) {
+func addUser(ctx *gin.Context) {
+	username, password, err := GetUsernameAndPassword(ctx)
+	fmt.Printf("%s, %s\n", username, password)
+	if err {
+		ctx.String(http.StatusNotFound, MISSING_PARAMETER)
+		return
+	}
+
+	// todo implement
 }
 
 func deleteUser(ctx *gin.Context) {
+	username, password, err := GetUsernameAndPassword(ctx)
+	fmt.Printf("%s, %s\n", username, password)
+	if err {
+		ctx.String(http.StatusNotFound, MISSING_PARAMETER)
+		return
+	}
+
+	// todo implement
 }
 
-func addUser(ctx *gin.Context) {
-}
+func changePassword(ctx *gin.Context) {
+	username, password, errUserAndPassword := GetUsernameAndPassword(ctx)
+	newPassword, errNewPassword := GetNewPassword(ctx)
+	fmt.Printf("%s, %s, %s\n", username, password, newPassword)
+	if errUserAndPassword || errNewPassword {
+		ctx.String(http.StatusNotFound, MISSING_PARAMETER)
+		return
+	}
 
-func byPassword(ctx *gin.Context) {
-}
-
-func byToken(ctx *gin.Context) {
-}
-
-func doesNameExist(ctx *gin.Context) {
-}
-
-func getToken(ctx *gin.Context) {
+	// todo implement
 }
 
 func refreshToken(ctx *gin.Context) {
+	// todo determine how I'll authinticate this
+
+	// todo implement
+}
+
+func doesNameExist(ctx *gin.Context) {
+	username, err := GetUsername(ctx)
+	fmt.Printf("%s\n", username)
+	if err {
+		ctx.String(http.StatusNotFound, MISSING_PARAMETER)
+		return
+	}
+
+	// todo implement
+}
+
+func getToken(ctx *gin.Context) {
+	username, password, err := GetUsernameAndPassword(ctx)
+	fmt.Printf("%s, %s\n", username, password)
+	if err {
+		ctx.String(http.StatusNotFound, MISSING_PARAMETER)
+		return
+	}
+
+	// todo implement
+}
+
+func byPassword(ctx *gin.Context) {
+	username, password, err := GetUsernameAndPassword(ctx)
+	fmt.Printf("%s, %s\n", username, password)
+	if err {
+		ctx.String(http.StatusNotFound, MISSING_PARAMETER)
+		return
+	}
+
+	// todo implement
+}
+
+func byToken(ctx *gin.Context) {
+	username, token, err := GetUsernameAndToken(ctx)
+	fmt.Printf("%s, %s\n", username, token)
+	if err {
+		ctx.String(http.StatusNotFound, MISSING_PARAMETER)
+		return
+	}
+
+	// todo implement
 }
