@@ -6,7 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-const MISSING_PARAMETER = "missing parameter"
+const MISSING_PARAMETER = "MISSING_PARAMETER"
+const INVALID_CREDENTIALS = "INVALID_CREDENTIALS"
 
 func GetUsernameAndPassword(ctx *gin.Context) (string, string, bool) {
 	username, errUsername := GetUsername(ctx)

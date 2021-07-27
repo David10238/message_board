@@ -25,6 +25,20 @@ func DB_NameExists(username string) bool {
 	return db.Where("username = ?", username).Find(&users).RowsAffected != 0
 }
 
+func DB_FindUserByPassword(username string, password string) (bool, User) {
+	//todo fix record not found
+	var user User
+	foundUser := db.Where("\"username\" = ? AND \"password\" = ?", username, password).First(&user).RowsAffected != 0
+	return foundUser, user
+}
+
+func DB_FindUserByToken(username string, token string) (bool, User) {
+	//todo fix record not found
+	var user User
+	foundUser := db.Where("\"username\" = ? AND \"token\" = ?", username, token).First(&user).RowsAffected != 0
+	return foundUser, user
+}
+
 func randomToken() string {
 	const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	s1 := rand.NewSource(time.Now().UnixNano())

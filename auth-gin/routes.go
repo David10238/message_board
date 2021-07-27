@@ -89,7 +89,14 @@ func byPassword(ctx *gin.Context) {
 		return
 	}
 
-	// todo implement
+	found, user := DB_FindUserByPassword(username, password)
+
+	if !found {
+		ctx.String(http.StatusUnauthorized, INVALID_CREDENTIALS)
+		return
+	}
+
+	ctx.JSON(http.StatusAccepted, user.ID)
 }
 
 func byToken(ctx *gin.Context) {
@@ -100,5 +107,12 @@ func byToken(ctx *gin.Context) {
 		return
 	}
 
-	// todo implement
+	found, user := DB_FindUserByToken(username, token)
+
+	if !found || user.Token != token {
+		ctx.String(http.StatusUnauthorized, INVALID_CREDENTIALS)
+		return
+	}
+
+	ctx.JSON(http.StatusAccepted, user.ID)
 }
