@@ -38,6 +38,16 @@ func deleteUser(ctx *gin.Context) {
 		return
 	}
 
+	found, user := DB_FindUserByPassword(username, password)
+
+	if !found {
+		ctx.String(http.StatusUnauthorized, INVALID_CREDENTIALS)
+		return
+	}
+
+	db.Delete(&User{}, user.ID)
+	ctx.String(http.StatusAccepted, ACCEPTED)
+
 	// todo implement
 }
 
