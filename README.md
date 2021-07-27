@@ -8,6 +8,7 @@ A microservice based social media site. For fun and to learn different approache
 - **posts-express:** Typescript and Express microservice for storing posts
 - **profile-django:** Python and Django microservice for storing user settings and profile information
 - **api-actix:** Rust and Actix api server for front ends to interact with, does not need a database
+- **spa-react:** Typescript and React application for the web browser front end
 
 ## **Languages Used**
 
@@ -39,6 +40,9 @@ A microservice based social media site. For fun and to learn different approache
 
 [DJango ORM](https://www.djangoproject.com/)
 
+[React](https://reactjs.org/)
+
 ## **Lessons Learned**
 
 - **Microservice-based Architecture**
+- **Authentication Basics**
