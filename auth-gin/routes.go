@@ -50,13 +50,38 @@ func changePassword(ctx *gin.Context) {
 		return
 	}
 
-	// todo implement
+	found, user := DB_FindUserByPassword(username, password)
+
+	if !found {
+		ctx.String(http.StatusUnauthorized, INVALID_CREDENTIALS)
+		return
+	}
+
+	user.Password = newPassword
+	db.Save(&user)
 }
 
 func refreshToken(ctx *gin.Context) {
-	// todo determine how I'll authinticate this
+	username, token, err := GetUsernameAndToken(ctx)
+	fmt.Printf("%s, %s\n", username, token)
+	if err {
+		ctx.String(http.StatusNotFound, MISSING_PARAMETER)
+		return
+	}
 
-	// todo implement
+	found, user := DB_FindUserByToken(username, token)
+
+	if !found {
+		ctx.String(http.StatusUnauthorized, INVALID_CREDENTIALS)
+		return
+	}
+
+	newToken := randomToken()
+	user.Token = newToken
+	db.Save(&user)
+
+	//todo add error case for if changing token fails
+	ctx.JSON(http.StatusAccepted, newToken)
 }
 
 func doesNameExist(ctx *gin.Context) {
@@ -116,7 +141,7 @@ func byToken(ctx *gin.Context) {
 
 	found, user := DB_FindUserByToken(username, token)
 
-	if !found || user.Token != token {
+	if !found {
 		ctx.String(http.StatusUnauthorized, INVALID_CREDENTIALS)
 		return
 	}
