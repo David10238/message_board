@@ -68,8 +68,6 @@ func doesNameExist(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusAccepted, DB_NameExists(username))
-
-	// todo implement
 }
 
 func getToken(ctx *gin.Context) {
