@@ -39,7 +39,8 @@ func GetPassword(ctx *gin.Context) (string, bool) {
 }
 
 func GetUsername(ctx *gin.Context) (string, bool) {
-	return GetString(ctx, "username")
+	str, b := GetString(ctx, "username")
+	return strings.ToLower(str), b
 }
 
 func GetStringArray(ctx *gin.Context, key string) ([]string, bool) {

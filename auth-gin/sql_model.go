@@ -23,7 +23,6 @@ func setupDB() *gorm.DB {
 	}
 
 	db.AutoMigrate(&User{})
-	//db.Create(&User{ID: 1, username: "user", password: "pass", token: "tok"})
 	return db
 }
 

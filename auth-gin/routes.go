@@ -26,7 +26,8 @@ func addUser(ctx *gin.Context) {
 		return
 	}
 
-	// todo implement
+	createdNew := DB_CreateUser(username, password)
+	ctx.JSON(http.StatusAccepted, createdNew)
 }
 
 func deleteUser(ctx *gin.Context) {
@@ -65,6 +66,8 @@ func doesNameExist(ctx *gin.Context) {
 		ctx.String(http.StatusNotFound, MISSING_PARAMETER)
 		return
 	}
+
+	ctx.JSON(http.StatusAccepted, DB_NameExists(username))
 
 	// todo implement
 }
