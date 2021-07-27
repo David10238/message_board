@@ -6,7 +6,7 @@ A microservice based social media site. For fun and to learn different approache
 
 - [auth-gin:](auth-gin) GoLang and Gin microservice for handling authintication security
 - [posts-express:](posts-express) Typescript and Express microservice for storing posts
-- [profile-django:](profile-django) Python and Django microservice for storing user settings and profile information
+- [profile_django:](profile_django) Python and Django microservice for storing user settings and profile information
 - [api-actix:](api-actix) Rust and Actix api server for front ends to interact with, does not need a database
 - [spa-react:](spa-react) Typescript and React application for the web browser front end
 
