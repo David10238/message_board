@@ -46,3 +46,21 @@ A microservice based social media site. For fun and to learn different approache
 
 - **Microservice-based Architecture**
 - **Authentication Basics**
+
+## **Ports Used**
+
+- **3000:** spa-react
+- **5000:** api-actix
+- **5001:** auth-gin
+- **5002:** posts-express
+- **5003:** profile-django
+- **5004:** language-go
+
+## **Commands**
+
+- **./api:** luanches main api server
+- **./migrate_profile:** luanches profile microservice
+- **./posts:** luanches posts microservice
+- **./profile:** luanches profile microservice
+- **./language** luanches language microservice
+- **./migrate_profile:** runs database migrations for profile microservice
