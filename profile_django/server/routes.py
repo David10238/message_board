@@ -1,13 +1,25 @@
 
 from django.urls import path
-from django.http import HttpResponse, HttpRequest, JsonResponse
+from django.http import HttpResponse, HttpRequest, JsonResponse, HttpResponseNotFound
 from .models import Profile
-from .constants import LanguageCodes
+from .constants import LanguageCodes, Headers, Messages
+from typing import Mapping
+
+
+def has_int(m: Mapping[str, any], key: str) -> bool:
+    return key in m and m[key].isnumeric()
+
+
+def has_bool(m: Mapping[str, any], key: str) -> bool:
+    return True
 
 
 def add_user(req: HttpRequest):
+    if not has_int(req.headers, Headers.ID):
+        return HttpResponseNotFound(Messages.MISSING_HEADER)
+
     prof = Profile(
-        id=0,
+        id=req.headers[Headers.ID],
         first_name="Name1",
         last_name="Name2",
         bio="Bio",
@@ -15,16 +27,23 @@ def add_user(req: HttpRequest):
         language=LanguageCodes.ENGLISH
     )
     prof.save()
-    return HttpResponse("")
+
+    return HttpResponse()
 
 
 def delete_user(req: HttpRequest):
+    if not has_int(req.headers, Headers.ID):
+        return HttpResponseNotFound(Messages.MISSING_HEADER)
+
+    Profile.objects.filter(id=req.headers[Headers.ID]).delete()
     return HttpResponse("delete")
 
 
 def get_profile(req: HttpRequest):
-    user_id = 0
-    prof = Profile.objects.get(id=user_id)
+    if not has_int(req.headers, Headers.ID):
+        return HttpResponseNotFound(Messages.MISSING_HEADER)
+
+    prof = Profile.objects.get(id=req.headers[Headers.ID])
     data = {
         "id": prof.id,
         "firstName": prof.first_name,
@@ -37,8 +56,10 @@ def get_profile(req: HttpRequest):
 
 
 def get_short_profile(req: HttpRequest):
-    user_id = 0
-    prof = Profile.objects.get(id=user_id)
+    if not has_int(req.headers, Headers.ID):
+        return HttpResponseNotFound(Messages.MISSING_HEADER)
+
+    prof = Profile.objects.get(id=req.headers[Headers.ID])
     data = {
         "id": prof.id,
         "firstName": prof.first_name,
@@ -48,6 +69,9 @@ def get_short_profile(req: HttpRequest):
 
 
 def merge_changes(req: HttpRequest):
+    if not has_int(req.headers, Headers.ID):
+        return HttpResponseNotFound(Messages.MISSING_HEADER)
+
     return HttpResponse("merge")
 
 

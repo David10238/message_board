@@ -7,3 +7,10 @@ class LanguageCodes:
     @staticmethod
     def is_valid(code: str):
         return code in ALL_CODES
+
+
+class Headers:
+    ID = "id"
+
+class Messages:
+    MISSING_HEADER = "MISING_HEADER"
