@@ -10,8 +10,8 @@ import (
 )
 
 type LangIndex struct {
-	Tag  string `json:"language_tag"`
-	Name string `json:"language_name"`
+	Tag  string `json:"languageTag"`
+	Name string `json:"languageName"`
 }
 
 const (
@@ -39,7 +39,7 @@ func makeAllLangsStr(langs *map[string]string) string {
 		if err := json.Unmarshal([]byte(lang), &dat); err != nil {
 			panic(err)
 		}
-		list = append(list, LangIndex{Tag: tag, Name: dat["language_name"]})
+		list = append(list, LangIndex{Tag: tag, Name: dat["languageName"]})
 	}
 	str, err := json.Marshal(list)
 	if err != nil {
