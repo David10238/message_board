@@ -1,0 +1,1 @@
+cd profile_django & python3 manage.py makemigrations & python3 manage.py migrate

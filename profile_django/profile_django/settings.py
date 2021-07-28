@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-1!dv-j-$^vnlyszziwjzr&$w+s3(p)rj-ngolg*q7!b8&1kus!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1"]
 
@@ -31,41 +31,14 @@ ALLOWED_HOSTS = ["127.0.0.1"]
 # Application definition
 
 INSTALLED_APPS = [
-    #    'django.contrib.admin',
-    #    'django.contrib.auth',
-    #    'django.contrib.contenttypes',
-    #    'django.contrib.sessions',
-    #    'django.contrib.messages',
-    #    'django.contrib.staticfiles',
+    'server.apps.ServerConfig'
 ]
 
-MIDDLEWARE = [
-    #    'django.middleware.security.SecurityMiddleware',
-    #    'django.contrib.sessions.middleware.SessionMiddleware',
-    #    'django.middleware.common.CommonMiddleware',
-    #    'django.middleware.csrf.CsrfViewMiddleware',
-    #    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    #    'django.contrib.messages.middleware.MessageMiddleware',
-    #    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+MIDDLEWARE = []
 
 ROOT_URLCONF = 'profile_django.urls'
 
-TEMPLATES = [
-    #    {
-    #        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-    #        'DIRS': [],
-    #        'APP_DIRS': True,
-    #        'OPTIONS': {
-    #            'context_processors': [
-    #                'django.template.context_processors.debug',
-    #                'django.template.context_processors.request',
-    #                'django.contrib.auth.context_processors.auth',
-    #                'django.contrib.messages.context_processors.messages',
-    #            ],
-    #        },
-    #    },
-]
+TEMPLATES = []
 
 WSGI_APPLICATION = 'profile_django.wsgi.application'
 
@@ -76,7 +49,7 @@ WSGI_APPLICATION = 'profile_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'message_posts_db',
+        'NAME': 'message_profiles_db',
         'USER': 'postgres',
         'PASSWORD': 'password',
         'HOST': 'localhost',
