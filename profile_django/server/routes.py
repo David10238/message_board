@@ -29,15 +29,14 @@ def has_json_bool(m: Mapping[str, any], key: str) -> bool:
 
 @require_POST
 def add_user(req: HttpRequest):
-    # finish by adding settings
-    if not has_int(req.headers, Headers.ID):
+    if not (has_int(req.headers, Headers.ID) and Headers.FIRST_NAME in req.headers.keys() and Headers.LAST_NAME in req.headers.keys()):
         return HttpResponseNotFound(Messages.MISSING_HEADER)
 
     prof = Profile(
         id=req.headers[Headers.ID],
-        first_name="Name1",
-        last_name="Name2",
-        bio="Bio",
+        first_name=req.headers[Headers.FIRST_NAME],
+        last_name=req.headers[Headers.LAST_NAME],
+        bio="",
         dark_mode=True,
         language=LanguageCodes.ENGLISH
     )
