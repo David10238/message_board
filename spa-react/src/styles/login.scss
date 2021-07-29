@@ -2,6 +2,7 @@
 
 $login-width: 400px;
 $login-color: #1877f2;
+$input-pad: 15px;
 
 #login-page {
   @extend .page, .center-contents;
@@ -15,6 +16,8 @@ $login-color: #1877f2;
 
 .login-input {
   @extend .soft-border;
+  box-sizing: border-box;
+  padding: 0px $input-pad 0px $input-pad;
   color: $soft-text-color;
   font-size: 17px;
   width: $login-width;

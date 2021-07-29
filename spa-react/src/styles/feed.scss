@@ -1,0 +1,21 @@
+@import "base";
+
+$feed-item-width: 600px;
+$text-color: black;
+$feed-item-padding: 15px;
+
+#feed-page {
+  @extend .page, .center-justify-contents;
+}
+
+.feed-item {
+  @extend .rounded-corner;
+  margin-top: 15px;
+  //box-sizing: border-box;
+  width: ($feed-item-width) - ($feed-item-padding) * 2;
+  padding: $feed-item-padding;
+  height: fit-content;
+  background-color: $form-color;
+  word-wrap: normal;
+  color: "000";
+}
