@@ -1,10 +1,10 @@
 import React from "react";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
     <div>
-      <p>Hello from react</p>
-      <p>Live reloading works</p>
+      <LoginPage />
     </div>
   );
 }

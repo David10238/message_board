@@ -1,0 +1,59 @@
+@import "base";
+
+$login-width: 400px;
+$login-color: #1877f2;
+
+#login-page {
+  @extend .page, .center-contents;
+}
+
+#login-form {
+  @extend .center-contents, .rounded-corner;
+  padding: 20px;
+  background: $form-color;
+}
+
+.login-input {
+  @extend .soft-border;
+  color: $soft-text-color;
+  font-size: 17px;
+  width: $login-width;
+  line-height: 48px;
+  margin-bottom: 20px;
+}
+
+#login-button {
+  @extend .rounded-button;
+  font-size: 20px;
+  width: $login-width;
+  line-height: 48px;
+  background-color: #1877f2;
+  color: $form-color;
+  margin-bottom: 20px;
+}
+
+#forgot-password-link {
+  color: #1877f2;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+#divider {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: $soft-border-color;
+  width: $login-width;
+  height: 1px;
+}
+
+#new-account-button {
+  @extend .rounded-button;
+  background-color: #42b72a;
+  font-size: 17px;
+  padding: 10px;
+}
+
+#new-account-button:active {
+  background-color: #42b72a;
+}

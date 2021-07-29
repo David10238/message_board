@@ -4,6 +4,8 @@ A microservice based full-stack social media website.
 
 I wrote the backend services with several different languages, frameworks and styles of SQL ORMS. I did this for fun, to be exposed to several solutions for similar problems and to better learn which libraries I actually do enjoy.
 
+The front end is heavily based on Facebook and Twitter. Many of the colors used are from their sites.
+
 ## Reflections About Options
 
 - Go and Python are my two favorite options. The two languages and their libraries were the easiest to use and learn.
