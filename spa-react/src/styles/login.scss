@@ -3,6 +3,7 @@
 $login-width: 400px;
 $login-color: #1877f2;
 $input-pad: 15px;
+$new-account-color: #42b72a;
 
 #login-page {
   @extend .page, .center-contents;
@@ -52,11 +53,11 @@ $input-pad: 15px;
 
 #new-account-button {
   @extend .rounded-button;
-  background-color: #42b72a;
+  background-color: $new-account-color;
   font-size: 17px;
   padding: 10px;
 }
 
 #new-account-button:active {
-  background-color: #42b72a;
+  background-color: $new-account-color;
 }

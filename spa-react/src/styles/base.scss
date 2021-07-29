@@ -35,6 +35,11 @@ $soft-border-color: #dddfe2;
   border-radius: 6px;
 }
 
+.inherit-size {
+  width: inherit;
+  height: inherit;
+}
+
 $font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 

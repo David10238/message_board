@@ -3,6 +3,7 @@
 $feed-item-width: 600px;
 $text-color: black;
 $feed-item-padding: 15px;
+$new-post-color: #42b72a;
 
 #feed-page {
   @extend .page, .center-justify-contents;
@@ -18,4 +19,31 @@ $feed-item-padding: 15px;
   background-color: $form-color;
   word-wrap: normal;
   color: "000";
+}
+
+$post-input-top-padding: 20px;
+$post-input-side-padding: 15px;
+
+#post-input {
+  @extend .rounded-corner, .inherit-size;
+  outline: none;
+  box-sizing: border-box;
+  word-wrap: inherit;
+  background-color: $background-color;
+  padding: $post-input-top-padding $post-input-side-padding
+    $post-input-top-padding $post-input-side-padding;
+}
+
+#post-button {
+  @extend .rounded-corner;
+  background-color: $new-post-color;
+  color: $background-color;
+  margin-top: 10px;
+  font-size: 20px;
+  line-height: 30px;
+  width: inherit;
+}
+
+#post-button:active {
+  background-color: $new-post-color;
 }
