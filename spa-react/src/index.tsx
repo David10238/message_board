@@ -3,6 +3,9 @@ import ReactDOM from "react-dom";
 import "./styles/base.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { loadStates } from "./state/StorageUtil";
+
+loadStates();
 
 ReactDOM.render(
   <React.StrictMode>

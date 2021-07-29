@@ -1,3 +1,5 @@
+import { load, save } from "./StorageUtil";
+
 interface Language {
   languageName: string;
   auth_email: string;
@@ -32,6 +34,12 @@ export enum Languages {
 
 export let lang = english;
 
+export function loadLanguage() {
+  console.log("loading lagnuage");
+  const fromLocal = load<Languages>("language");
+  if (fromLocal != null) setLanguage(fromLocal);
+}
+
 export function setLanguage(langage: Languages) {
   switch (langage) {
     case Languages.ENGLISH:
@@ -41,4 +49,5 @@ export function setLanguage(langage: Languages) {
       lang = spanish;
       break;
   }
+  save("language", langage);
 }
