@@ -1,4 +1,4 @@
-import { load, save } from "./StorageUtil";
+import { localLoad, localSave } from "./StorageUtil";
 
 interface Language {
   languageName: string;
@@ -36,7 +36,7 @@ export let lang = english;
 
 export function loadLanguage() {
   console.log("loading lagnuage");
-  const fromLocal = load<Languages>("language");
+  const fromLocal = localLoad<Languages>("language");
   if (fromLocal != null) setLanguage(fromLocal);
 }
 
@@ -49,5 +49,5 @@ export function setLanguage(langage: Languages) {
       lang = spanish;
       break;
   }
-  save("language", langage);
+  localSave("language", langage);
 }
