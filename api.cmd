@@ -1,1 +1,1 @@
-cd api-actix & cargo run
+cd api-gin & go run github.com/david10238/message_board/api-gin
