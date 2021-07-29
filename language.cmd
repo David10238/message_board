@@ -1,1 +1,0 @@
-cd language-go & go run github.com/david10238/message_board/language-go

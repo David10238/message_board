@@ -23,7 +23,6 @@ The front end is heavily based on Facebook and Twitter. Many of the colors used 
 - [posts-express:](posts-express) Typescript and Express microservice for storing posts
 - [profile_django:](profile_django) Python and Django microservice for storing user settings and profile information
 - [api-actix:](api-actix) Rust and Actix api server for front ends to interact with, does not need a database
-- [language-go](language-go) Go server without and external libraries for serving language options
 - [spa-react:](spa-react) Typescript and React application for the web browser front end
 
 ## Languages Used
@@ -67,7 +66,6 @@ The front end is heavily based on Facebook and Twitter. Many of the colors used 
 - `5001` auth-gin
 - `5002` posts-express
 - `5003` profile-django
-- `5004` language-go
 
 ## Commands
 
@@ -75,5 +73,4 @@ The front end is heavily based on Facebook and Twitter. Many of the colors used 
 - `./migrate_profile` luanches profile microservice
 - `./posts` luanches posts microservice
 - `./profile` luanches profile microservice
-- `./language` luanches language microservice
 - `./migrate_profile` runs database migrations for profile microservice
