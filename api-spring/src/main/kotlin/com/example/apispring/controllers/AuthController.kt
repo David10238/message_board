@@ -1,5 +1,8 @@
 package com.example.apispring.controllers
 
+import com.example.apispring.client.AuthMicroservice
+import com.example.apispring.client.makeRawSpringResponse
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
@@ -20,8 +23,9 @@ class AuthController {
     }
 
     @RequestMapping(value = ["/auth/refreshToken"], method = [RequestMethod.PATCH])
-    fun refreshToken(@RequestHeader username: String, @RequestHeader token: String) {
-
+    fun refreshToken(@RequestHeader username: String, @RequestHeader token: String): ResponseEntity<String> {
+        val res = AuthMicroservice.refreshToken(username, token)
+        return makeRawSpringResponse(res)
     }
 
     @RequestMapping(value = ["/auth/doesNameExist"], method = [RequestMethod.GET])
