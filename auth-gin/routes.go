@@ -46,17 +46,15 @@ func deleteUser(ctx *gin.Context) {
 
 	if !found {
 		if !DB_NameExists(username) {
-			ctx.String(http.StatusAccepted, ACCEPTED)
+			ctx.JSON(http.StatusAccepted, nil)
 			return
 		}
-		ctx.String(http.StatusUnauthorized, INVALID_CREDENTIALS)
+		ctx.JSON(http.StatusUnauthorized, nil)
 		return
 	}
 
 	db.Delete(&User{}, user.ID)
-	ctx.String(http.StatusAccepted, ACCEPTED)
-
-	// todo implement
+	ctx.JSON(http.StatusAccepted, user.ID)
 }
 
 func changePassword(ctx *gin.Context) {

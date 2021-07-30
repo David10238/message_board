@@ -20,8 +20,17 @@ class AuthController {
     }
 
     @RequestMapping(value = ["/auth/delete"], method = [RequestMethod.DELETE])
-    fun deleteUser(@RequestHeader username: String, @RequestHeader password: String) =
-        makeRawSpringResponse(AuthMicroservice.deleteUser(username, password))
+    fun deleteUser(@RequestHeader username: String, @RequestHeader password: String): ResponseEntity<String> {
+        val deleteUserRes = AuthMicroservice.deleteUser(username, password)
+        val id = AuthMicroservice.parseID(deleteUserRes)
+        if (id.id != null)
+            ProfileMicroservice.deleteUser(id.id)
+        return makeRawSpringResponse(
+            id.code,
+            emptyList(),
+            ""
+        )
+    }
 
     @RequestMapping(value = ["/auth/changePassword"], method = [RequestMethod.PATCH])
     fun changePassword(
