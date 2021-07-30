@@ -10,36 +10,38 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class AuthController {
-    @RequestMapping(value = ["/auth/delete"], method = [RequestMethod.DELETE])
-    fun deleteUser(@RequestHeader username: String, @RequestHeader password: String) {
+    companion object {
+        @JvmStatic
+        private val newUserLock = Object()
     }
+
+    @RequestMapping(value = ["/auth/delete"], method = [RequestMethod.DELETE])
+    fun deleteUser(@RequestHeader username: String, @RequestHeader password: String) =
+        makeRawSpringResponse(AuthMicroservice.deleteUser(username, password))
 
     @RequestMapping(value = ["/auth/changePassword"], method = [RequestMethod.PATCH])
     fun changePassword(
         @RequestHeader username: String,
         @RequestHeader password: String,
         @RequestHeader newPassword: String
-    ) {
-    }
+    ) = makeRawSpringResponse(AuthMicroservice.changePassword(username, password, newPassword))
 
     @RequestMapping(value = ["/auth/refreshToken"], method = [RequestMethod.PATCH])
-    fun refreshToken(@RequestHeader username: String, @RequestHeader token: String): ResponseEntity<String> {
-        val res = AuthMicroservice.refreshToken(username, token)
-        return makeRawSpringResponse(res)
-    }
+    fun refreshToken(@RequestHeader username: String, @RequestHeader token: String) =
+        makeRawSpringResponse(AuthMicroservice.refreshToken(username, token))
 
     @RequestMapping(value = ["/auth/doesNameExist"], method = [RequestMethod.GET])
-    fun doesNameExist(@RequestHeader username: String) {
-
-    }
+    fun doesNameExist(@RequestHeader username: String) =
+        makeRawSpringResponse(AuthMicroservice.doesNameExist(username))
 
     @RequestMapping(value = ["/auth/token"], method = [RequestMethod.GET])
-    fun getToken(@RequestHeader username: String, @RequestHeader password: String) {
-
-    }
+    fun getToken(@RequestHeader username: String, @RequestHeader password: String) =
+        makeRawSpringResponse(AuthMicroservice.getToken(username, password))
 
     @RequestMapping(value = ["/auth/create"], method = [RequestMethod.POST])
-    fun createNewUser(@RequestHeader username: String, @RequestHeader password: String) {
-
+    fun createNewUser(@RequestHeader username: String, @RequestHeader password: String): ResponseEntity<String> {
+        synchronized(newUserLock) {
+            return makeRawSpringResponse(AuthMicroservice.addUser(username, password))
+        }
     }
 }

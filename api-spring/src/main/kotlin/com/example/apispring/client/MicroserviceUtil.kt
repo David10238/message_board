@@ -41,6 +41,11 @@ fun makeRawSpringResponse(code: Int, headers: List<Header>, body: String): Respo
 }
 
 abstract class Microservice(private val PORT: Int) {
+    companion object {
+        @JvmStatic
+        protected val EMPTY_BODY = ""
+    }
+
     protected fun requestRaw(method: HttpMethod, endpoint: String, headers: List<Header>, body: String): RawResponse {
         val httpClient = HttpClient.newBuilder()
             .build()
