@@ -41,6 +41,10 @@ func deleteUser(ctx *gin.Context) {
 	found, user := DB_FindUserByPassword(username, password)
 
 	if !found {
+		if !DB_NameExists(username) {
+			ctx.String(http.StatusAccepted, ACCEPTED)
+			return
+		}
 		ctx.String(http.StatusUnauthorized, INVALID_CREDENTIALS)
 		return
 	}
