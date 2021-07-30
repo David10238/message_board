@@ -29,13 +29,13 @@ def has_json_bool(m: Mapping[str, any], key: str) -> bool:
 
 @require_POST
 def add_user(req: HttpRequest):
-    if not (has_int(req.headers, Headers.ID) and Headers.FIRST_NAME in req.headers.keys() and Headers.LAST_NAME in req.headers.keys()):
+    if not has_int(req.headers, Headers.ID):
         return HttpResponseNotFound(Messages.MISSING_HEADER)
 
     prof = Profile(
         id=req.headers[Headers.ID],
-        first_name=req.headers[Headers.FIRST_NAME],
-        last_name=req.headers[Headers.LAST_NAME],
+        first_name="",
+        last_name="",
         bio="",
         dark_mode=True,
         language=LanguageCodes.ENGLISH
@@ -66,7 +66,8 @@ def get_profile(req: HttpRequest):
         Headers.LAST_NAME: prof.last_name,
         Headers.BIO: prof.bio,
         Headers.DARK_MODE: prof.dark_mode,
-        Headers.LANGUAGE: prof.last_name
+        Headers.LANGUAGE: prof.last_name,
+        "setup": prof.setup,
     }
     return JsonResponse(data)
 
@@ -115,7 +116,7 @@ def merge_changes(req: HttpRequest):
 
     prof = Profile.objects.get(id=req.headers[Headers.ID])
     # check first name
-    if has_typed_key(data, Headers.FIRST_NAME, str) and data[Headers.FIRST_NAME] != prof.first_name:
+    if has_typed_key(data, Headers.FIRST_NAME, str) and data[Headers.FIRST_NAME] != prof.first_name and data[Headers.FIRST_NAME] != "":
         prof.first_name = data[Headers.FIRST_NAME]
         shouldChange = True
     # check last name
@@ -134,6 +135,9 @@ def merge_changes(req: HttpRequest):
     if(hasLanguageSetting and data[Headers.LANGUAGE] != prof.language):
         prof.language = data[Headers.LANGUAGE]
         shouldChange = True
+
+    if(prof.first_name != ""):
+        prof.setup = True
 
     if not shouldChange:
         return HttpResponse(Messages.NO_CHANGES)

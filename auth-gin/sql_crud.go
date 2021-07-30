@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func DB_CreateUser(username string, password string) bool {
+func DB_CreateUser(username string, password string) *User {
 	user := User{
 		Username: username,
 		Password: password,
@@ -13,11 +13,11 @@ func DB_CreateUser(username string, password string) bool {
 	}
 
 	if DB_NameExists(username) {
-		return false
+		return nil
 	}
 
 	db.Create(&user)
-	return true
+	return &user
 }
 
 func DB_NameExists(username string) bool {

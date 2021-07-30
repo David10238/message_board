@@ -1,7 +1,11 @@
 package com.example.apispring.controllers
 
 import com.example.apispring.client.AuthMicroservice
+import com.example.apispring.client.ProfileMicroservice
+import com.example.apispring.client.RawResponse
 import com.example.apispring.client.makeRawSpringResponse
+import com.example.apispring.models.toJson
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestMapping
@@ -40,8 +44,18 @@ class AuthController {
 
     @RequestMapping(value = ["/auth/create"], method = [RequestMethod.POST])
     fun createNewUser(@RequestHeader username: String, @RequestHeader password: String): ResponseEntity<String> {
-        synchronized(newUserLock) {
-            return makeRawSpringResponse(AuthMicroservice.addUser(username, password))
-        }
+        val createUserRes: RawResponse = AuthMicroservice.addUser(username, password)
+        val id = AuthMicroservice.parseID(createUserRes)
+
+        val userCreated = id.id != null
+
+        if (userCreated)
+            ProfileMicroservice.addUser(id.id!!)
+
+        return makeRawSpringResponse(
+            id.code,
+            emptyList(),
+            toJson(userCreated)
+        )
     }
 }

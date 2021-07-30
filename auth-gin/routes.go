@@ -26,8 +26,12 @@ func addUser(ctx *gin.Context) {
 		return
 	}
 
-	createdNew := DB_CreateUser(username, password)
-	ctx.JSON(http.StatusAccepted, createdNew)
+	newUser := DB_CreateUser(username, password)
+	if newUser == nil {
+		ctx.JSON(http.StatusAccepted, nil)
+		return
+	}
+	ctx.JSON(http.StatusAccepted, newUser.ID)
 }
 
 func deleteUser(ctx *gin.Context) {

@@ -8,3 +8,4 @@ class Profile(models.Model):
     bio = models.TextField()
     dark_mode = models.BooleanField()
     language = models.CharField(max_length=3)
+    setup = models.BooleanField(default=False)
