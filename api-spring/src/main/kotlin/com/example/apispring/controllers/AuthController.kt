@@ -25,11 +25,7 @@ class AuthController {
         val id = AuthMicroservice.parseID(deleteUserRes)
         if (id.id != null)
             ProfileMicroservice.deleteUser(id.id)
-        return makeRawSpringResponse(
-            id.code,
-            emptyList(),
-            ""
-        )
+        return id.asResponse()
     }
 
     @RequestMapping(value = ["/auth/changePassword"], method = [RequestMethod.PATCH])
