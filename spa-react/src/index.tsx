@@ -4,10 +4,8 @@ import "./styles/base.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { loadStates } from "./state/StorageUtil";
-import { requestBody } from "./api/API";
 
 loadStates();
-requestBody();
 
 ReactDOM.render(
   <React.StrictMode>

@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/login" exact component={LoginPage} />
-        <Route path="/wall" exact component={WallPage} />
+        <Route path="/" exact component={WallPage} />
         <Route path="/" component={Error404} />
       </Switch>
     </BrowserRouter>

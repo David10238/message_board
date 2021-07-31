@@ -1,5 +1,5 @@
 import "./../styles/base.scss";
-import "./../styles/feed.scss";
+import "./../styles/wall.scss";
 
 interface PostProps {
   name: String;
